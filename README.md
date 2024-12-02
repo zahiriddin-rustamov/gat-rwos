@@ -1,3 +1,5 @@
 # GAT-RWOS: Graph Attention-Guided Random Walk Oversampling for Imbalanced Data Classification
 
-# this repo is under construction, check back a little later 🚧
+🚧 **Repository Under Construction** 🚧  
+
+This repository is currently being developed. Check back soon for updates.
