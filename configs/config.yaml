@@ -1,0 +1,85 @@
+# Default hyperparameters and settings for the GAT-RWOS pipeline
+defaults:
+  # general
+  random_state: 1
+
+  # data
+  scaler: "minmax" # minmax, standard, or none
+  test_size: 0.1
+  val_size: 0.1
+
+  # graph construction
+  graph_method: distance
+  similarity_method: euclidean # cosine, euclidean, manhattan
+  similarity_threshold: 0.5
+  n_neighbors: 5
+
+  # training
+  hid: 32
+  in_head: 4
+  out_head: 3
+  dropout_rate: 0.3
+  num_hidden_layers: 3
+  num_epochs: 500
+  patience: 30
+  return_attention: True
+  optimizer: 
+    name: "adam" # you can specify any optimizer from torch.optim.
+    params:
+      weight_decay: 0.0000
+      lr: 0.01
+
+  scheduler:
+    name: "reducelronplateau" # you can specify any scheduler from torch.optim.lr_scheduler.
+    params:
+      factor: 0.5
+      patience: 10
+      mode: "min"
+      min_lr: 0.00001
+
+  # attention
+  aggregation_method: "median" # mean, median, max, mul
+  attention_threshold: 0.3
+
+  # random walk
+  num_steps: 10
+  p: 0.5
+  q: 2.0
+
+  # interpolation
+  num_interpolations: 15
+  min_alpha: 0.1
+  max_alpha: 0.9
+  variability: 0.9
+
+  # tuning (optuna)
+  n_trials_main: 5
+  n_trials_attention: 5
+  n_trials_interpolation: 5
+
+  # paths
+  data_folder: "data/"
+  results_folder: "results/"
+
+tuning:
+  optuna:
+    ranges:
+      similarity_methods: ["cosine", "euclidean", "manhattan"]
+      similarity_threshold: 
+        min: 0.7
+        max: 0.999
+      n_neighbors: 
+        min: 5
+        max: 15
+      hid:
+        min: 4
+        max: 64
+      in_head:
+        min: 4
+        max: 16
+      out_head:
+        min: 1
+        max: 4
+      dropout_rate: 
+        min: 0.0
+        max: 0.7

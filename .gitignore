@@ -1,0 +1,21 @@
+# Ignore specific files in the root
+gat-rwos.py
+import_analyzer.py
+main_0.py
+training_0.py
+merge_all.py
+
+# Ignore specific files inside the data folder
+data/selected_datasets.txt
+data/data_cleaner.py
+
+# Ignore common Python-related files
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+
+latex/
+*.tmp*
